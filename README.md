@@ -1,10 +1,10 @@
-# <img src="https://github.com/y28lyn/accessible-components/assets/97447648/8dacdc38-85ea-422e-a378-da5f4c384c2e" alt="Logo Accessible Components" width="30" height="30"> Accessible Quiz
+#  <img width="30" height="30" alt="image" src="https://github.com/y28lyn/accessible-quiz/assets/97447648/023bec24-3b9b-41f9-964a-fef6d33a9875"> Accessible Quiz
 
 ## Description
 
-Accessible Components est un logiciel pour créer des quiz en ligne, développé en ReactJS / Typescript et en suivant les normes W3C.
+Accessible Quiz est un logiciel pour créer des quiz en ligne, développé en ReactJS / Typescript et en suivant les normes W3C.
 
-<img width="960" alt="" src="https://github.com/y28lyn/accessible-components/assets/97447648/b9fe4f70-a616-4bca-afca-99f16b54a760">
+<img width="960" alt="image" src="https://github.com/y28lyn/accessible-quiz/assets/97447648/f0928cc1-6f76-45b8-8b1f-8bba6c7fd849">
 
 ## Fonctionnalités
 
