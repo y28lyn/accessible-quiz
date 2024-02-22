@@ -1,4 +1,4 @@
-# <img src="https://github.com/y28lyn/accessible-components/assets/97447648/8dacdc38-85ea-422e-a378-da5f4c384c2e" alt="Logo Accessible Components" width="30" height="30"> Accessible Quiz
+#  ![quizicon](https://github.com/y28lyn/accessible-quiz/assets/97447648/023bec24-3b9b-41f9-964a-fef6d33a9875) Accessible Quiz
 
 ## Description
 
