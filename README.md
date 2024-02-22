@@ -2,7 +2,7 @@
 
 ## Description
 
-Accessible Components est un logiciel pour créer des quiz en ligne, développé en ReactJS / Typescript et en suivant les normes W3C.
+Accessible Quiz est un logiciel pour créer des quiz en ligne, développé en ReactJS / Typescript et en suivant les normes W3C.
 
 <img width="960" alt="image" src="https://github.com/y28lyn/accessible-quiz/assets/97447648/f0928cc1-6f76-45b8-8b1f-8bba6c7fd849">
 
