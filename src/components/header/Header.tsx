@@ -1,6 +1,10 @@
 const Header = () => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-slate-800 p-6 20vh">
+    <nav
+      role="navigation"
+      tabIndex={-1}
+      className="flex items-center justify-between flex-wrap bg-slate-800 p-6"
+    >
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <img src="/quizicon.png" alt="" className="h-8 w-8 mr-2" />
         <span className="font-semibold text-xl tracking-tight">
