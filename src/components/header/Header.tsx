@@ -6,7 +6,7 @@ const Header = () => {
     >
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <img
-          src="/static/images/logoinolib.png"
+          src="./static/images/logoinolib.png"
           alt="Logo d'INOLIB"
           className="h-16 w-auto mr-2"
         />
