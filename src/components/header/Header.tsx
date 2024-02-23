@@ -2,12 +2,11 @@ const Header = () => {
   return (
     <nav
       role="navigation"
-      tabIndex={-1}
       className="flex items-center justify-between flex-wrap bg-[#0B3168] p-6"
     >
       <div className="flex items-center flex-no-shrink text-white mr-6">
         <img
-          src="/static/logoinolib.png"
+          src="/static/images/logoinolib.png"
           alt="Logo d'INOLIB"
           className="h-16 w-auto mr-2"
         />
