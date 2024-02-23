@@ -22,6 +22,10 @@ type Props = {
   questionStyle?: string;
   radioStyle?: string;
   checkboxStyle?: string;
+  radioStyleField?: string;
+  checkboxStyleField?: string;
+  radioStyleLabel?: string;
+  checkboxStyleLabel?: string;
 };
 
 const Form = ({
@@ -31,6 +35,10 @@ const Form = ({
   questionStyle,
   radioStyle,
   checkboxStyle,
+  radioStyleField,
+  checkboxStyleField,
+  radioStyleLabel,
+  checkboxStyleLabel,
 }: Props) => {
   const initialValues: Record<string, string> = formDescription.reduce(
     (acc, question) => {
@@ -96,20 +104,8 @@ const Form = ({
               }
             });
 
-            if (incorrectResponses.length === 0) {
-              alert("Toutes vos réponses sont correctes !");
-            } else {
-              const message = incorrectResponses
-                .map(
-                  ({ question, correctAnswer }) =>
-                    `\n${question} : \n${correctAnswer}`,
-                )
-                .join("\n");
+            alert("Passage à la question suivante");
 
-              alert(
-                `Les réponses incorrectes et leurs réponses correctes :\n${message}`,
-              );
-            }
             setSubmitting(false);
           }, 500);
         }}
@@ -133,6 +129,8 @@ const Form = ({
                           value={answer}
                           label={answer}
                           style={radioStyle}
+                          styleField={radioStyleField}
+                          styleLabel={radioStyleLabel}
                         />
                       ))}
                     </FieldGroup>
@@ -155,6 +153,8 @@ const Form = ({
                           value={answer}
                           label={answer}
                           style={checkboxStyle}
+                          styleField={checkboxStyleField}
+                          styleLabel={checkboxStyleLabel}
                         />
                       ))}
                     </FieldGroup>
@@ -164,7 +164,7 @@ const Form = ({
           })}
 
           <button className={submitStyle} type="submit">
-            Envoyez vos réponses
+            Suivant
           </button>
         </FormikForm>
       </Formik>

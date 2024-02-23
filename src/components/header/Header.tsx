@@ -3,11 +3,15 @@ const Header = () => {
     <nav
       role="navigation"
       tabIndex={-1}
-      className="flex items-center justify-between flex-wrap bg-slate-800 p-6"
+      className="flex items-center justify-between flex-wrap bg-[#0B3168] p-6"
     >
       <div className="flex items-center flex-no-shrink text-white mr-6">
-        <img src="/quizicon.png" alt="" className="h-8 w-8 mr-2" />
-        <span className="font-semibold text-xl tracking-tight">
+        <img
+          src="/logoinolib.png"
+          alt=""
+          className="h-10 w-auto mr-2 bg-white rounded-lg"
+        />
+        <span className="font-semibold text-xl tracking-tight ml-3">
           Accessible Quiz
         </span>
       </div>
@@ -15,6 +19,7 @@ const Header = () => {
         <button className="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
           <svg
             className="h-3 w-3"
+            fill="#fff"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >

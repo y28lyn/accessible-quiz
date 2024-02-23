@@ -6,20 +6,30 @@ type CheckboxProps = {
   value: string;
   label: string;
   style?: string | undefined;
+  styleField?: string | undefined;
+  styleLabel?: string | undefined;
 };
 
-const Checkbox = ({ id, name, value, label, style }: CheckboxProps) => (
+const Checkbox = ({
+  id,
+  name,
+  value,
+  label,
+  style,
+  styleField,
+  styleLabel,
+}: CheckboxProps) => (
   <div className={style}>
     <Field
       aria-describedby={`${id}-error`}
       aria-labelledby={`${id}-label`}
-      className=""
+      className={styleField}
       id={id}
       name={name}
       type="checkbox"
       value={value}
     />
-    <label className="" htmlFor={id} id={`${id}-label`}>
+    <label className={styleLabel} htmlFor={id} id={`${id}-label`}>
       {label}
     </label>
 

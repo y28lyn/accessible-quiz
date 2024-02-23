@@ -8,11 +8,11 @@ const App = () => {
       <main
         id="main"
         role="main"
-        className="h-fit p-6 flex justify-center items-center"
+        className="h-fit md:h-screen p-6 flex justify-center items-center"
       >
         <MainContent
           imgSrc={
-            "https://images.unsplash.com/photo-1707343843982-f8275f3994c5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            "https://images.unsplash.com/photo-1531742633345-8adf1181733c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }
         />
       </main>
