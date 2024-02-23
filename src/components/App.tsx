@@ -8,7 +8,7 @@ const App = () => {
       <main
         id="main"
         role="main"
-        className="h-fit md:h-screen p-6 flex justify-center items-center"
+        className="h-fit md:h-screen p-6 flex flex-col justify-center items-center"
       >
         <MainContent
           imgSrc={

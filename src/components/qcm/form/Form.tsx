@@ -1,9 +1,10 @@
+import { useState, Fragment } from "react";
 import { Formik, Form as FormikForm } from "formik";
-import { Fragment } from "react";
 
 import FieldGroup from "./FieldGroup";
 import Checkbox from "./questions/Checkbox";
 import RadioButton from "./questions/RadioButton";
+import ProgressionBar from "../../items/ProgressionBar";
 
 export type FormDescription = Question[];
 
@@ -40,135 +41,100 @@ const Form = ({
   radioStyleLabel,
   checkboxStyleLabel,
 }: Props) => {
-  const initialValues: Record<string, string> = formDescription.reduce(
-    (acc, question) => {
-      acc[question.title] = "";
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const currentQuestion = formDescription[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === formDescription.length - 1;
+
+  const handleNextQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+  };
+
+  const handleFinishForm = () => {
+    alert("Vous avez répondues à toutes les questions.");
+  };
+
+  const initialValues: Record<string, string> = {};
+  initialValues[currentQuestion.title] = "";
 
   return (
-    <>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log("Réponses de l'utilisateur:", values);
-            console.log("Réponses correctes:", formDescription);
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          console.log("Réponses de l'utilisateur :", values);
+          console.log("Réponses correctes :", currentQuestion);
 
-            const incorrectResponses: {
-              question: string;
-              correctAnswer: string;
-            }[] = [];
+          if (!isLastQuestion) {
+            handleNextQuestion();
+          } else {
+            handleFinishForm();
+          }
 
-            formDescription.forEach((question) => {
-              if (question.type === "checkbox") {
-                const userResponses = Object.entries(values)
-                  .filter(([key, value]) => key === question.title && value)
-                  .map(([key]) => key);
+          setSubmitting(false);
+        }, 500);
+      }}
+    >
+      <FormikForm className={formStyle}>
+        <ProgressionBar
+          totalQuestions={formDescription.length}
+          currentQuestionIndex={currentQuestionIndex}
+        />
+        <Fragment key={currentQuestionIndex}>
+          <h2 className={questionStyle} id={`${currentQuestion.id}-title`}>
+            {currentQuestion.title}
+          </h2>
 
-                console.log(
-                  "Réponses de l'utilisateur pour",
-                  question.title + ":",
-                  userResponses,
-                );
-                console.log(
-                  "Réponses correctes pour",
-                  question.title + ":",
-                  question.correctAnswers,
-                );
+          <FieldGroup aria-labelledby={`${currentQuestion.id}-title`}>
+            {currentQuestion.type === "checkbox"
+              ? currentQuestion.answers?.map((answer, ansIndex) => (
+                  <Checkbox
+                    key={ansIndex}
+                    id={`${currentQuestion.title}-${ansIndex}`}
+                    name={currentQuestion.title}
+                    value={answer}
+                    label={answer}
+                    style={checkboxStyle}
+                    styleField={checkboxStyleField}
+                    styleLabel={checkboxStyleLabel}
+                  />
+                ))
+              : currentQuestion.answers?.map((answer, ansIndex) => (
+                  <RadioButton
+                    key={ansIndex}
+                    id={`${currentQuestion.title}-${ansIndex}`}
+                    name={currentQuestion.title}
+                    value={answer}
+                    label={answer}
+                    style={radioStyle}
+                    styleField={radioStyleField}
+                    styleLabel={radioStyleLabel}
+                  />
+                ))}
+          </FieldGroup>
+        </Fragment>
 
-                const isAnyCorrect = userResponses.some((response) =>
-                  question.correctAnswers.includes(response),
-                );
-
-                if (!isAnyCorrect) {
-                  incorrectResponses.push({
-                    question: question.title,
-                    correctAnswer: question.correctAnswers.join(", "),
-                  });
-                }
-              } else {
-                const userResponse = values[question.title];
-
-                if (
-                  userResponse &&
-                  !question.correctAnswers.includes(userResponse)
-                ) {
-                  incorrectResponses.push({
-                    question: question.title,
-                    correctAnswer: question.correctAnswers.join(", "),
-                  });
-                }
-              }
-            });
-
-            alert("Passage à la question suivante");
-
-            setSubmitting(false);
-          }, 500);
-        }}
-      >
-        <FormikForm className={formStyle}>
-          {formDescription.map((question, index) => {
-            switch (question.type) {
-              case "radio":
-                return (
-                  <Fragment key={index}>
-                    <h2 className={questionStyle} id={`${question.id}-title`}>
-                      {question.title}
-                    </h2>
-
-                    <FieldGroup aria-labelledby={`${question.id}-title`}>
-                      {question.answers?.map((answer, ansIndex) => (
-                        <RadioButton
-                          key={ansIndex}
-                          id={`${question.title}-${ansIndex}`}
-                          name={question.title}
-                          value={answer}
-                          label={answer}
-                          style={radioStyle}
-                          styleField={radioStyleField}
-                          styleLabel={radioStyleLabel}
-                        />
-                      ))}
-                    </FieldGroup>
-                  </Fragment>
-                );
-
-              case "checkbox":
-                return (
-                  <Fragment key={index}>
-                    <h2 className={questionStyle} id={`${question.id}-title`}>
-                      {question.title}
-                    </h2>
-
-                    <FieldGroup aria-labelledby={`${question.id}-title`}>
-                      {question.answers?.map((answer, ansIndex) => (
-                        <Checkbox
-                          key={ansIndex}
-                          id={`${question.title}-${ansIndex}`}
-                          name={question.title}
-                          value={answer}
-                          label={answer}
-                          style={checkboxStyle}
-                          styleField={checkboxStyleField}
-                          styleLabel={checkboxStyleLabel}
-                        />
-                      ))}
-                    </FieldGroup>
-                  </Fragment>
-                );
-            }
-          })}
-
-          <button className={submitStyle} type="submit">
-            Suivant
-          </button>
-        </FormikForm>
-      </Formik>
-    </>
+        <div>
+          {!isLastQuestion && (
+            <button
+              className={submitStyle}
+              type="button"
+              onClick={handleNextQuestion}
+            >
+              Suivant
+            </button>
+          )}
+          {isLastQuestion && (
+            <button
+              className={submitStyle}
+              type="submit"
+              onClick={handleFinishForm}
+            >
+              Envoyez vos réponses
+            </button>
+          )}
+        </div>
+      </FormikForm>
+    </Formik>
   );
 };
 
