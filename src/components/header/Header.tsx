@@ -6,7 +6,11 @@ const Header = () => {
       className="flex items-center justify-between flex-wrap bg-[#0B3168] p-6"
     >
       <div className="flex items-center flex-no-shrink text-white mr-6">
-        <img src="/logoinolib.png" alt="" className="h-16 w-auto mr-2" />
+        <img
+          src="/static/logoinolib.png"
+          alt="Logo d'INOLIB"
+          className="h-16 w-auto mr-2"
+        />
         <span className="font-semibold text-xl tracking-tight ml-3">
           Accessible Quiz
         </span>
